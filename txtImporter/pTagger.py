@@ -1,7 +1,7 @@
 """
 Small tool to add p tag to each line in txt
 This also tags suitable tags according to rules.csv which acts as css tag patterns
-Version: 1.0.1
+Version: 1.0.1-formal
 """
 
 class PTagger:
@@ -36,7 +36,7 @@ class PTagger:
                     if r[0] in content[i]:
                         content[i] = addtag(content[i], r[2], r[3], r[0], r[1])
                 # special cases
-                if ':' in content[i]:
+                """if ':' in content[i]:
                     flag = True
                     post = False
                     tmp=[]
@@ -45,7 +45,7 @@ class PTagger:
                         if x == ':' and tmp[len(tmp)-2]==True:
                             post = True
                     if post==True:
-                        content[i] = '<strong class="sage">' + content[i] + '</strong>'
+                        content[i] = '<strong class="sage">' + content[i] + '</strong>'"""
 
                 # new paragraph tag for each lines
                 content[i] = '<p>' + content[i] + '</p>'
