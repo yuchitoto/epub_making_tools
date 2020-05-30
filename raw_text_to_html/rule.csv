@@ -1,0 +1,6 @@
+# start indicator, end indicator, html start tag, html end flag
+「,」,<strong class="msg">,</strong>
+『,』,<strong class="msg2">,</strong>
+【,】,<strong class="magic">,</strong>
+（,）,<strong class="think">,</strong>
+(,),<strong class="think">,</strong>

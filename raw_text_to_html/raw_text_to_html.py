@@ -1,8 +1,16 @@
+import csv
+
 file = open("text.txt", "r", encoding='utf8')
 content = file.readlines()
+file.close()
 content = [x.strip() for x in content]
 content = [x.strip('\u202c') for x in content]
 content = [x.strip('\u202d') for x in content]
+
+file = open("rule.csv", "r", encoding='utf8')
+csvfile = csv.reader(filter(lambda row: row[0]!='#', file))
+rule = [row for row in csvfile]
+file.close()
 
 
 def addtag(ln, prefix, suffix, ind1, ind2):
@@ -23,9 +31,11 @@ def addtag(ln, prefix, suffix, ind1, ind2):
 
 for i in range(len(content)):
     if len(content[i]) > 0:
-        if '「' in content[i]:
-            #print('「 found')
-            content[i] = addtag(content[i], '<strong class="msg">', '</strong>', '「', '」')
+        # normal rule handling
+        for r in rule:
+            if r[0] in content[i]:
+                content[i] = addtag(content[i], r[2], r[3], r[0], r[1])
+        # special cases
         if ':' in content[i]:
             flag = True
             post = False
@@ -36,17 +46,10 @@ for i in range(len(content)):
                     post = True
             if post==True:
                 content[i] = '<strong class="sage">' + content[i] + '</strong>'
-        if '『' in content[i]:
-            #print('『 found')
-            content[i] = addtag(content[i], '<strong class="msg2">', '</strong>', '『', '』')
-        if '【' in content[i]:
-            content[i] = addtag(content[i], '<strong class="magic">', '</strong>', '【', '】')
-        if '（' in content[i]:
-            content[i] = addtag(content[i], '<strong class="think">', '</strong>', '（', '）')
-        if '(' in content[i]:
-            content[i] = addtag(content[i], '<strong class="think">', '</strong>', '(', ')')
+
+        # new paragraph tag for each lines
         content[i] = '<p>' + content[i] + '</p>'
-file.close()
+
 outfile = open("content.txt", "w", encoding='utf8')
 for i in content:
     outfile.write(i+'\n')
