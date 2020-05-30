@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+<name>txtImporter</name>
+<type>edit</type>
+<author>John_Crew; yuchitoto</author>
+<description>Inserts a selected text file into an ePub</description>
+<engine>python3.4</engine>
+<version>0.9.1</version>
+<oslist>osx,win,unx</oslist>
+<autostart>true</autostart>
+<autoclose>true</autoclose>
+</plugin>
