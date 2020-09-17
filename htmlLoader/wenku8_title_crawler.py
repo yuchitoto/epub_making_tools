@@ -35,9 +35,10 @@ def crawl(obj):
                 flag = False
 
         last_update = None
-        if flag == 'true':
+        if flag == True:
             last_update = date_finde.split(str(soup.findAll('td', {'width':'20%'})[3]))[1]
-        entry = {'id':cur, 'book_name':tmp[0], 'author':tmp[1], 'publisher':tmp[2], 'available':flag, 'last_update':last_update}
+        print('-'.join(tmp[0:-3]) + 'end')
+        entry = {'id':cur, 'book_name':'-'.join(tmp[0:-3]), 'author':tmp[-3], 'publisher':tmp[-2], 'available':flag, 'last_update':last_update}
         ret = entry
 
     return ret
