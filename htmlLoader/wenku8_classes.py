@@ -14,11 +14,11 @@ def id_to_array(data):
 
 
 class wenku8(BaseModel):
-    id = IntegerField()
+    id = IntegerField(primary_key=True)
     book_name = CharField()
     author = CharField()
     publisher = CharField()
-    available = FixedCharField(max_length=5)
+    available = BooleanField()
     last_update = DateField()
     local_update = DateTimeField()
 
