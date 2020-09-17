@@ -28,11 +28,11 @@ def crawl(obj):
     else:
         print(title.decode('gbk'))
         tmp = list(map(lambda x: x.strip(" "), tag_finde.sub("", title.decode('gbk')).split("-")))
-        flag = 'true'
+        flag = True
         for i in soup.findAll('b'):
             cmper = str(i).encode('latin-1')
             if finder in cmper:
-                flag = 'false'
+                flag = False
 
         last_update = None
         if flag == 'true':
